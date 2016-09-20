@@ -20,52 +20,29 @@ function getJSON(url, cb = () => {}) {
 	});
 }
 
-/**
-* Represents a repository
-* @constructor
-* @argument {string} repo Repository path e.g. montyanderson/storm
-* @argument {string} ref Reference e.g. master
-*/
-
 class ghfs {
 	constructor(repo, ref = "master") {
 		this.repo = repo;
 		this.ref = ref;
 	}
 
-	/**
-	* Gets the contents of a directory
-	* @function
-	* @argument {string} path Path e.g. /
-	* @argument {requestCallback} cb Callback
-	*/
-
 	contents(path = "/", cb = () => {}) {
 		getJSON(base + "/repos/" + this.repo + "/contents" + path + "?ref=" + this.ref, (err, files) => {
 			if(err) return cb(err);
-			cb(null, files.map(f => new File(f)));
+			cb(null, files.map(f => new ghfsItem(f)));
 		});
 	}
 };
 
-/**
-* Represents a file
-* @constructor
-* @private
-* @argument {Object} file
-*/
-
-class File {
-	constructor(file) {
-		Object.assign(this, file);
+class ghfsItem {
+	constructor(item) {
+		Object.assign(this, item);
 
 		if(this.encoding == "base64") {
 			this.contents = atob(this.contents);
 			this.encoding = "utf8";
 		}
 	}
-
-	
 
 	download(cb = () => {}) {
 		get(this.download_url, cb);
