@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run build && mv bundle.js browser.js && git config --global user.name 'Monty Anderson' && git config --global user.email 'monty.linux@gmail.com' && git remote set-url origin https://montyanderson:$(ACCESS_TOKEN)@github.com/montyanderson/ghfs.git && git add . && git commit -m 'New Build' && git push origin master",
+    "test": "echo $(ACCESS_TOKEN); echo ACCESS_TOKEN; echo $ACCESS_TOKEN; npm run build && mv bundle.js browser.js && git config --global user.name 'Monty Anderson' && git config --global user.email 'monty.linux@gmail.com' && git remote set-url origin https://montyanderson:$(ACCESS_TOKEN)@github.com/montyanderson/ghfs.git && git add . && git commit -m 'New Build' && git push origin master",
     "build": "browserify index.js --standalone ghfs -t [ babelify --presets [ es2015 ] ] > bundle.js",
     "dev": "watchify index.js -o bundle.js --standalone ghfs -t [ babelify --presets [ es2015 ] ]"
   },
