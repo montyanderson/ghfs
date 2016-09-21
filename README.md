@@ -50,6 +50,8 @@ scripts
 styles
 ```
 
+## class ghfsItem
+
 ### ghfsItem#download()
 
 ``` javascript
