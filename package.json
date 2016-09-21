@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run build && mv bundle.js browser.js && cat ~/.ssh/id_rsa.pub && git config --global user.name 'Monty Anderson' && git config --global user.email 'monty.linux@gmail.com' && git remote add ssh git@github.com:montyanderson/ghfs.git && git add . && git commit -m 'New Build' && git push ssh master",
+    "test": "npm run build && mv bundle.js browser.js && git config --global user.name 'Monty Anderson' && git config --global user.email 'monty.linux@gmail.com' && git remote add ssh git@github.com:montyanderson/ghfs.git && git add . && git commit -m 'New Build' && git push ssh master",
     "build": "browserify index.js --standalone ghfs -t [ babelify --presets [ es2015 ] ] > bundle.js",
     "dev": "watchify index.js -o bundle.js --standalone ghfs -t [ babelify --presets [ es2015 ] ]"
   },
