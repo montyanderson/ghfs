@@ -49,3 +49,17 @@ routes
 scripts
 styles
 ```
+
+### ghfsItem#download()
+
+``` javascript
+repo.contents("/", function(err, items) {
+	items.filter(function(item) {
+		return item.type == "file";
+	}).forEach(function(file) {
+		file.download(function(err, data) {
+			console.log(data);
+		});
+	});	
+});
+```
