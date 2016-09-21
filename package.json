@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run build && mv bundle.js browser.js && git remote add ssh git@github.com:montyanderson/ghfs.git && git add . && git commit -m 'New Build' && git push ssh master",
     "build": "browserify index.js --standalone ghfs -t [ babelify --presets [ es2015 ] ] > bundle.js",
     "dev": "watchify index.js -o bundle.js --standalone ghfs -t [ babelify --presets [ es2015 ] ]"
   },
