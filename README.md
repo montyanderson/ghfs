@@ -2,18 +2,24 @@
 
 Interface with a repository on Github as if it were a filesystem.
 
-``` javascript
-var repo = new ghfs("montyanderson/storm", "master");
+``` html
+<body>
 
-repo.contents(function(err, files) {
-	console.log(err || files);
-
-	files.forEach(function(file) {
-		file.download(function(err, data) {
-			console.log(err || data);
+	<script src="https://cdn.rawgit.com/montyanderson/ghfs/master/browser.js"></script>
+	<script>
+	var repo = new ghfs("montyanderson/storm", "master");
+	
+	repo.contents(function(err, files) {
+		console.log(err || files);
+	
+		files.forEach(function(file) {
+			file.download(function(err, data) {
+				console.log(err || data);
+			});
 		});
 	});
-});
+	</script>
+</body>
 ```
 
 ## class ghfs
